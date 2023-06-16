@@ -33,13 +33,10 @@ class HomeActivity : AppCompatActivity(), LoaderCallbacks<Cursor>, UserAdapter.O
     private lateinit var phoneNumber:List<String>
     private lateinit var cardNumber:List<String>
 
-    private lateinit var dbHelper: UserDbHelper
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_home)
 
-        dbHelper = UserDbHelper(this)
         mAdapter = UserAdapter(this, this)
 
         nameList = arrayListOf(
@@ -68,17 +65,6 @@ class HomeActivity : AppCompatActivity(), LoaderCallbacks<Cursor>, UserAdapter.O
         cardNumber = arrayListOf("5555 5555 5555 4444", "4012 8888 8888 1881", "4111 1111 1111 1111",
         "6011 0009 9013 9424", "374245455400126", "378282246310005", "6250941006528599", " 5431 1111 1111 1111 ",
         "3711 1111 1111 114", "3711 1111 1111 114")
-
-//        val db = dbHelper.writableDatabase
-//        val values = ContentValues()
-//        for (i in 0..9){
-//            values.put(UserEntry.COLUMN_USERNAME, nameList[i])
-//            values.put(UserEntry.COLUMN_EMAIL, emailList[i])
-//            values.put(UserEntry.COLUMN_BALANCE, balanceList[i])
-//            values.put(UserEntry.COLUMN_PHONE_NUMBER, phoneNumber[i])
-//            values.put(UserEntry.COLUMN_CARD_NUMBER, cardNumber[i])
-//            db.insert(UserEntry.TABLE_NAME, null, values)
-//        }
 
         binding.usersRV.apply {
             setHasFixedSize(true)
