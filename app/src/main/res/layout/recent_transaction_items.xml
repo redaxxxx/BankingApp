@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
@@ -11,7 +12,7 @@
         android:layout_height="wrap_content"
         app:cardCornerRadius="8dp"
         app:cardUseCompatPadding="true"
-        app:cardBackgroundColor="@android:color/darker_gray">
+        app:cardBackgroundColor="@color/white">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -19,7 +20,7 @@
             android:padding="8dp">
 
             <LinearLayout
-                android:id="@+id/nameLayout"
+                android:id="@+id/senderNameLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
@@ -28,78 +29,105 @@
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="Name   :"
+                    android:layout_weight="2"
+                    android:text="SENDER'S NAME   : "
                     android:textAllCaps="true"
                     android:textSize="14sp"
                     android:textColor="@color/black" />
 
                 <TextView
-                    android:id="@+id/username_tv"
+                    android:id="@+id/senderName_tv"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="2"
+                    android:layout_weight="3"
                     android:text="Reda Nabil"
                     android:textSize="14sp"
-                    android:gravity="start" />
+                    android:gravity="center" />
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/emailLayout"
+                android:id="@+id/receiverNameLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                app:layout_constraintTop_toBottomOf="@id/nameLayout"
+                app:layout_constraintTop_toBottomOf="@id/senderNameLayout"
                 android:layout_marginTop="5dp">
 
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="email :"
+                    android:layout_weight="2"
+                    android:text="RECEIVER'S NAME :"
                     android:textAllCaps="true"
                     android:textSize="14sp"
                     android:textColor="@color/black" />
 
                 <TextView
-                    android:id="@+id/email_tv"
+                    android:id="@+id/receiverName_tv"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="2"
-                    android:text="redanabil518@gmail.com"
-                    android:textSize="12sp"
-                    android:gravity="start" />
+                    android:layout_weight="3"
+                    android:text="Mohamed Nabil"
+                    android:textSize="14sp"
+                    android:gravity="center" />
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/balanceLayout"
+                android:id="@+id/transferAmountLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                app:layout_constraintTop_toBottomOf="@id/emailLayout"
+                app:layout_constraintTop_toBottomOf="@id/receiverNameLayout"
                 android:layout_marginTop="5dp">
 
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
+                    android:layout_weight="2"
                     android:text="balance :"
                     android:textAllCaps="true"
                     android:textSize="14sp"
                     android:textColor="@color/black" />
 
                 <TextView
-                    android:id="@+id/balance_tv"
+                    android:id="@+id/transferAmount_tv"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="3"
+                    android:text="40000"
+                    android:textSize="14sp"
+                    android:gravity="center" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/statusLinearLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintTop_toBottomOf="@id/transferAmountLayout"
+                android:layout_marginTop="5dp">
+
+                <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="2"
-                    android:text="40000"
+                    android:text="STATUS :"
+                    android:textAllCaps="true"
+                    android:textSize="14sp"
+                    android:textColor="@color/black" />
+
+                <TextView
+                    android:id="@+id/status_tv"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="3"
+                    android:text="SUCCESSFUL"
                     android:textColor="@color/light_blue"
                     android:textSize="14sp"
-                    android:gravity="start" />
+                    android:gravity="center" />
             </LinearLayout>
 
-
         </androidx.constraintlayout.widget.ConstraintLayout>
+
     </androidx.cardview.widget.CardView>
 </layout>

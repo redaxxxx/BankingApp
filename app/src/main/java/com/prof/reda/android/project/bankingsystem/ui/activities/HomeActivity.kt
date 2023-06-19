@@ -17,7 +17,6 @@ import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.prof.reda.android.project.bankingsystem.*
 import com.prof.reda.android.project.bankingsystem.data.UserAdapter
-import com.prof.reda.android.project.bankingsystem.data.database.UserDbHelper
 import com.prof.reda.android.project.bankingsystem.data.database.UsersContract
 import com.prof.reda.android.project.bankingsystem.data.database.UsersContract.Companion.UserEntry
 import com.prof.reda.android.project.bankingsystem.databinding.ActivityHomeBinding
@@ -108,12 +107,13 @@ class HomeActivity : AppCompatActivity(), LoaderCallbacks<Cursor>, UserAdapter.O
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when(item.itemId){
-            R.id.insert_user -> {
-                insertUsers()
+            R.id.recent_transaction -> {
+                startActivity(Intent(this, RecentTransactionActivity::class.java))
                 true
             }
-            R.id.delete_all ->{
-                deleteAllUsers()
+
+            R.id.insert_users -> {
+                insertUsers()
                 true
             }
             else -> return false
@@ -182,5 +182,4 @@ class HomeActivity : AppCompatActivity(), LoaderCallbacks<Cursor>, UserAdapter.O
         }
 
     }
-
 }

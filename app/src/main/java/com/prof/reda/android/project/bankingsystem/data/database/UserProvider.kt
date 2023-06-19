@@ -9,12 +9,14 @@ import android.database.SQLException
 import android.database.sqlite.SQLiteDatabase
 import android.net.Uri
 import com.prof.reda.android.project.bankingsystem.data.database.UsersContract.Companion.UserEntry
+import com.prof.reda.android.project.bankingsystem.data.database.TransactionsContract.Companion.TransactionsEntry
 
 class UserProvider : ContentProvider() {
 
     companion object{
-        private val USERS:Int = 200
-        private val USER_ID:Int = 201
+        private const val USERS:Int = 200
+        private const val USER_ID:Int = 201
+        private const val TRANSACTIONS:Int = 210
         private val sUriMatcher = buildUriMatcher()
 
 
@@ -26,15 +28,17 @@ class UserProvider : ContentProvider() {
 
             uriMatcher.addURI(UsersContract.CONTENT_AUTHORITY, UsersContract.PATH_USERS + "/#", USER_ID)
 
+            uriMatcher.addURI(TransactionsContract.CONTENT_AUTHORITY, TransactionsContract.PATH, TRANSACTIONS)
+
             return uriMatcher
         }
 
     }
 
-    private lateinit var userDbHelper: UserDbHelper
+    private lateinit var userDbHelper: MyDbHelper
 
     override fun onCreate(): Boolean {
-        userDbHelper = UserDbHelper(context!!)
+        userDbHelper = MyDbHelper(context!!)
         return true
     }
 
@@ -69,6 +73,11 @@ class UserProvider : ContentProvider() {
                 null, null, sortOrder)
             }
 
+            TRANSACTIONS -> {
+                cursor = database.query(TransactionsEntry.TABLE_NAME, projection, _selection, _selectionArgs,
+                null, null, sortOrder)
+            }
+
             else -> {
                 throw IllegalArgumentException("cannot query unknown URI $uri")
             }
@@ -91,17 +100,35 @@ class UserProvider : ContentProvider() {
         throw IllegalArgumentException("Not yet implemented")
     }
 
-    override fun insert(uri: Uri, values: ContentValues?): Uri? {
+    override fun insert(uri: Uri, values: ContentValues?): Uri {
         val match = sUriMatcher.match(uri)
         when(match){
             USERS -> {
                 return insertUser(uri, values)
             }
 
+            TRANSACTIONS ->{
+                return insertTransaction(uri, values)
+            }
+
             else -> {
                 throw IllegalArgumentException("Unknown uri: $uri")
             }
         }
+    }
+
+    private fun insertTransaction(uri: Uri, values: ContentValues?): Uri {
+        val database = userDbHelper.writableDatabase
+
+        val id = database.insert(TransactionsEntry.TABLE_NAME, null, values)
+
+        if (id.equals(-1)){
+            throw SQLException("Failed to insert row into + $uri")
+        }
+
+        context?.contentResolver?.notifyChange(uri, null)
+
+        return ContentUris.withAppendedId(uri, id)
     }
 
     private fun insertUser(uri: Uri, values: ContentValues?): Uri {
@@ -137,6 +164,10 @@ class UserProvider : ContentProvider() {
                 return database.delete(UserEntry.TABLE_NAME, selection, selectionArgs)
             }
 
+            TRANSACTIONS -> {
+                return database.delete(TransactionsEntry.TABLE_NAME, _selection, _selectionArgs)
+            }
+
             else ->{
                 throw IllegalArgumentException("Deletion is not supported for $uri")
             }
@@ -159,12 +190,21 @@ class UserProvider : ContentProvider() {
                 selectionArgs = arrayOf(ContentUris.parseId(uri).toString())
                 return updateUser(uri, values, selection, selectionArgs)
             }
+
+//            TRANSACTIONS -> {
+//                return updataTransaction(uri, values, _selection, _selectionArgs)
+//            }
+
             else ->{
                 throw IllegalArgumentException("Update not supported for $uri")
             }
         }
     }
 
+//    private fun updataTransaction(uri: Uri, values: ContentValues?, selection: String?,
+//                                  selectionArgs: Array<out String>?): Int{
+//        if (values!!.containsKey(TransactionsEntry.co))
+//    }
     private fun updateUser(
         uri: Uri,
         values: ContentValues?,

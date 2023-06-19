@@ -1,42 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.motion.widget.MotionLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    app:layoutDescription="@xml/activity_main_scene"
-    tools:context=".ui.activities.MainActivity"
-    app:applyMotionScene="true"
-    app:motionProgress="@integer/material_motion_duration_short_1">
+    tools:context=".ui.activities.MainActivity">
 
-    <ImageView
-        android:id="@+id/firstCircle"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:src="@drawable/baseline_circle_24"
-        app:layout_constraintBottom_toTopOf="@id/secondCircle"
-        app:layout_constraintEnd_toEndOf="@id/thirdCircle"
-        app:layout_constraintStart_toStartOf="@id/secondCircle"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_chainStyle="packed" />
-
-    <ImageView
-        android:id="@+id/secondCircle"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:src="@drawable/baseline_circle_24"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/thirdCircle"
-        app:layout_constraintHorizontal_chainStyle="packed"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/firstCircle" />
-
-    <ImageView
-        android:id="@+id/thirdCircle"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:src="@drawable/baseline_circle_24"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/secondCircle"
-        app:layout_constraintTop_toTopOf="@id/secondCircle" />
-</androidx.constraintlayout.motion.widget.MotionLayout>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fontFamily="@font/alfa_slab_one"
+        android:gravity="center"
+        android:text="Reda Nabil Ramadan"
+        android:textColor="@color/dark_blue"
+        android:textSize="24sp"
+        android:textStyle="bold" />
+</androidx.constraintlayout.widget.ConstraintLayout>

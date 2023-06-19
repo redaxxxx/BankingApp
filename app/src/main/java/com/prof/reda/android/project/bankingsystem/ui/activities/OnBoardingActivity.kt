@@ -10,7 +10,6 @@ import com.prof.reda.android.project.bankingsystem.databinding.ActivityOnBoardin
 class OnBoardingActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_on_boarding)
         val binding:ActivityOnBoardingBinding = DataBindingUtil.setContentView(this,
             R.layout.activity_on_boarding
         )

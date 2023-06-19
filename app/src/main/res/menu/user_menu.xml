@@ -2,8 +2,10 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <item android:id="@+id/insert_user"
-        android:title="Insert" />
-    <item android:id="@+id/delete_all"
-        android:title="DeleteAll"/>
+    <item android:id="@+id/recent_transaction"
+        android:title="Recent Transaction" />
+
+    <item android:id="@+id/insert_users"
+        android:title="Insert"/>
+
 </menu>

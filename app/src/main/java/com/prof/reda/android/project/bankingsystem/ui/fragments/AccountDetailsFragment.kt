@@ -2,7 +2,6 @@ package com.prof.reda.android.project.bankingsystem.ui.fragments
 
 import android.app.AlertDialog
 import android.content.DialogInterface
-import android.content.Intent
 import android.os.Bundle
 import android.text.InputType
 import android.util.Log
@@ -14,16 +13,16 @@ import android.widget.EditText
 import androidx.databinding.DataBindingUtil
 import com.prof.reda.android.project.bankingsystem.ENTER_AMOUNT_HERE
 import com.prof.reda.android.project.bankingsystem.KEY_ID_INDEX
+import com.prof.reda.android.project.bankingsystem.KEY_USERNAME_COLUMN_INDEX
 import com.prof.reda.android.project.bankingsystem.R
-import com.prof.reda.android.project.bankingsystem.data.database.UserDbHelper
+import com.prof.reda.android.project.bankingsystem.data.database.MyDbHelper
 import com.prof.reda.android.project.bankingsystem.data.database.UsersContract
 import com.prof.reda.android.project.bankingsystem.databinding.FragmentAccountDetailsBinding
-import com.prof.reda.android.project.bankingsystem.ui.activities.UserDetailsActivity
 
 class AccountDetailsFragment : Fragment(){
 
     private lateinit var binding: FragmentAccountDetailsBinding
-    private lateinit var userDbHelper: UserDbHelper
+    private lateinit var userDbHelper: MyDbHelper
 
     private lateinit var username: String
     private lateinit var email: String
@@ -38,7 +37,7 @@ class AccountDetailsFragment : Fragment(){
     ): View? {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_account_details, container, false)
 
-        userDbHelper = UserDbHelper(requireContext())
+        userDbHelper = MyDbHelper(requireContext())
 
         val bundle = arguments
         getSingleUserInfo(bundle?.getInt(KEY_ID_INDEX, 0))
@@ -73,6 +72,7 @@ class AccountDetailsFragment : Fragment(){
             val fragment = SelectAccountFragment()
             val bundle = Bundle()
             bundle.putString(ENTER_AMOUNT_HERE, mText)
+            bundle.putString(KEY_USERNAME_COLUMN_INDEX, username)
             fragment.arguments = bundle
             activity?.supportFragmentManager?.beginTransaction()?.replace(R.id.userDetails, fragment)
                 ?.addToBackStack(null)
